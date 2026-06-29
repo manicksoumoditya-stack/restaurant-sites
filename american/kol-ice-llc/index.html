@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Handcrafted American flavors worth savoring — American in Miami">
+<title>KOL ICE LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0C0C0C;--surface:#161616;--card:#1E1E1E;--border:#2A2A2A;
+  --green:#00FF88;--green2:#00CC6A;--red:#FF4040;--orange:#FF6B35;
+  --white:#FFFFFF;--muted:#9A9A9A;--dim:#555;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+
+/* GLOW */
+.glow{text-shadow:0 0 20px rgba(0,255,136,.4)}
+.glow-box{box-shadow:0 0 0 1px rgba(0,255,136,.2),0 0 30px rgba(0,255,136,.08)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:99;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 56px;background:rgba(12,12,12,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border)}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;
+  color:var(--white);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.nav-links{display:flex;gap:8px}
+.nav-link{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;
+  padding:7px 14px;border-radius:50px;border:1px solid transparent;transition:all .25s}
+.nav-link:hover,.nav-link.active{background:rgba(0,255,136,.08);border-color:rgba(0,255,136,.25);color:var(--green)}
+.nav-cta{background:var(--green);color:var(--bg);padding:9px 22px;border-radius:50px;
+  text-decoration:none;font-size:.82rem;font-weight:700;transition:all .3s}
+.nav-cta:hover{background:var(--green2);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,255,136,.3)}
+
+/* HERO */
+.hero{padding:130px 56px 70px;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.kicker-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.kicker-text{font-size:.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--green)}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:700;line-height:1.1;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.75;max-width:420px;margin-bottom:30px}
+.hero-stats{display:flex;gap:28px;margin-bottom:34px}
+.stat{text-align:center}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:var(--green)}
+.stat-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.hero-ctas{display:flex;gap:12px}
+.btn-green{background:var(--green);color:var(--bg);padding:12px 26px;border-radius:50px;
+  text-decoration:none;font-size:.875rem;font-weight:700;display:inline-flex;
+  align-items:center;gap:8px;transition:all .3s}
+.btn-green:hover{background:var(--green2);transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(0,255,136,.35)}
+.btn-outline{border:1px solid var(--border);color:var(--muted);padding:12px 26px;
+  border-radius:50px;text-decoration:none;font-size:.875rem;font-weight:500;transition:all .3s}
+.btn-outline:hover{border-color:rgba(0,255,136,.4);color:var(--green)}
+
+/* HERO VISUAL */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hg-card{border-radius:18px;overflow:hidden;position:relative}
+.hg-card img{width:100%;height:180px;object-fit:cover;display:block}
+.hg-card.tall img{height:374px}
+.hg-price{position:absolute;bottom:12px;left:12px;
+  background:rgba(0,255,136,.9);color:var(--bg);
+  font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700;
+  padding:5px 12px;border-radius:50px}
+.hg-badge{position:absolute;top:12px;right:12px;
+  background:rgba(255,64,64,.85);color:#fff;
+  font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:50px}
+
+/* FILTER TABS */
+.filter-bar{padding:0 56px 40px;display:flex;gap:10px;flex-wrap:wrap}
+.filter-btn{padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:500;
+  border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .25s}
+.filter-btn:hover,.filter-btn.active{background:rgba(0,255,136,.1);
+  border-color:rgba(0,255,136,.4);color:var(--green)}
+
+/* MENU GRID */
+.menu-sec{padding:0 56px 80px}
+.sec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.sec-h{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700}
+.sec-link{color:var(--green);text-decoration:none;font-size:.82rem;font-weight:600;
+  display:flex;align-items:center;gap:5px;border:1px solid rgba(0,255,136,.25);
+  padding:7px 16px;border-radius:50px;transition:all .25s}
+.sec-link:hover{background:rgba(0,255,136,.08)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.mcard{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  overflow:hidden;transition:all .3s;cursor:pointer}
+.mcard:hover{border-color:rgba(0,255,136,.3);transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,255,136,.06)}
+.mcard-img{width:100%;height:180px;object-fit:cover}
+.mcard-body{padding:16px}
+.mcard-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.mcard-name{font-family:'Space Grotesk',sans-serif;font-size:.98rem;font-weight:600}
+.mcard-price{color:var(--green);font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;font-weight:700}
+.mcard-desc{font-size:.78rem;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.mcard-actions{display:flex;justify-content:space-between;align-items:center}
+.mcard-tag{font-size:.7rem;background:rgba(0,255,136,.1);color:var(--green);
+  padding:3px 10px;border-radius:50px;border:1px solid rgba(0,255,136,.2)}
+.add-btn{width:34px;height:34px;border-radius:50%;background:var(--green);
+  color:var(--bg);display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;border:none;cursor:pointer;transition:all .25s}
+.add-btn:hover{background:var(--green2);transform:scale(1.1)}
+
+/* PROMO BANNER */
+.promo{margin:0 56px 80px;background:linear-gradient(135deg,#0A2A1A 0%,#0D3320 100%);
+  border:1px solid rgba(0,255,136,.15);border-radius:24px;padding:50px 56px;
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+  position:relative;overflow:hidden}
+.promo::before{content:'';position:absolute;top:-60px;right:-60px;
+  width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,255,136,.12) 0%,transparent 70%);pointer-events:none}
+.promo-discount{font-family:'Space Grotesk',sans-serif;font-size:clamp(3rem,6vw,5rem);
+  font-weight:700;color:var(--green);line-height:1;margin-bottom:8px}
+.promo-discount span{font-size:.35em;vertical-align:super;color:var(--muted)}
+.promo h3{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;
+  color:var(--white);margin-bottom:8px}
+.promo p{color:var(--muted);font-size:.9rem;line-height:1.65;margin-bottom:24px}
+.promo-img{border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.promo-img img{width:100%;height:280px;object-fit:cover;display:block}
+
+/* INFO STRIP */
+.info-strip{padding:0 56px 80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px;
+  transition:all .3s}
+.info-card:hover{border-color:rgba(0,255,136,.2)}
+.info-icon{width:46px;height:46px;border-radius:12px;background:rgba(0,255,136,.08);
+  display:flex;align-items:center;justify-content:center;color:var(--green);
+  font-size:1.2rem;margin-bottom:16px;border:1px solid rgba(0,255,136,.15)}
+.info-card h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;
+  color:var(--white);margin-bottom:6px}
+.info-card p,.info-card a{font-size:.85rem;color:var(--muted);text-decoration:none;line-height:1.6}
+.info-card a:hover{color:var(--green)}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);
+  padding:44px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.ft-brand{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;
+  font-size:1.2rem;font-weight:700;color:var(--white)}
+.ft-links{display:flex;gap:24px}
+.ft-links a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-links a:hover{color:var(--green)}
+.ft-copy{color:var(--dim);font-size:.78rem}
+
+@media(max-width:900px){
+  .nav{padding:12px 20px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:110px 20px 50px}
+  .hero-grid{display:none}
+  .filter-bar,.menu-sec,.info-strip{padding-left:20px;padding-right:20px}
+  .promo{margin:0 20px 60px;grid-template-columns:1fr;padding:36px 24px}
+  .promo-img{display:none}
+  footer{padding:32px 20px;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="top">
+  <a class="nav-brand" href="#top">
+    <div class="nav-dot"></div>KOL ICE LLC
+  </a>
+  <div class="nav-links">
+    <a class="nav-link active" href="#top">Home</a>
+    <a class="nav-link" href="#menu">Menu</a>
+    <a class="nav-link" href="#promo">Offers</a>
+    <a class="nav-link" href="#info">Info</a>
+  </div>
+  <a class="nav-cta" href="https://www.google.com/maps/search/?api=1&query=KOL%20ICE%20LLC&query_place_id=ChIJZTDBxdC22YgRQceWTN9fwl0" target="_blank">Find Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-kicker">
+      <div class="kicker-dot"></div>
+      <span class="kicker-text">American · Miami</span>
+    </div>
+    <h1>Welcome to <em>KOL ICE LLC</em></h1>
+    <p class="hero-sub">Handcrafted American flavors worth savoring. Every dish is crafted for those who take their food seriously.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4.8</div>
+        <div class="stat-label">Rating</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">10</div>
+        <div class="stat-label">Reviews</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Dishes</div>
+      </div>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn-green" href="#menu"><i class="fas fa-utensils"></i>View Menu</a>
+      <a class="btn-outline" href="https://www.google.com/maps/search/?api=1&query=KOL%20ICE%20LLC&query_place_id=ChIJZTDBxdC22YgRQceWTN9fwl0" target="_blank">Get Directions</a>
+    </div>
+  </div>
+  <div class="hero-grid">
+    <div class="hg-card tall">
+      <img src="https://images.pexels.com/photos/33858065/pexels-photo-33858065.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="KOL ICE LLC">
+      <div class="hg-price">$24</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="hg-card">
+        <img src="https://images.pexels.com/photos/10895168/pexels-photo-10895168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="dish">
+        <div class="hg-badge">POPULAR</div>
+      </div>
+      <div class="hg-card">
+        <img src="https://images.pexels.com/photos/8365312/pexels-photo-8365312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="dish">
+        <div class="hg-price">$16</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterAll(this)">All Menu</button>
+  <button class="filter-btn" onclick="filterAll(this)">Signature</button>
+  <button class="filter-btn" onclick="filterAll(this)">Popular</button>
+  <button class="filter-btn" onclick="filterAll(this)">New</button>
+</div>
+
+<!-- MENU GRID -->
+<section class="menu-sec" id="menu">
+  <div class="sec-header">
+    <h2 class="sec-h">Our Menu</h2>
+    <a class="sec-link" href="https://www.google.com/maps/search/?api=1&query=KOL%20ICE%20LLC&query_place_id=ChIJZTDBxdC22YgRQceWTN9fwl0" target="_blank">Order Now <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="mgrid">
+    
+    <div class="mcard">
+      <img class="mcard-img" src="https://images.pexels.com/photos/10895168/pexels-photo-10895168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="BBQ Ribs">
+      <div class="mcard-body">
+        <div class="mcard-row">
+          <span class="mcard-name">BBQ Ribs</span>
+          <span class="mcard-price">$24</span>
+        </div>
+        <div class="mcard-desc">Slow-smoked baby back ribs</div>
+        <div class="mcard-actions">
+          <span class="mcard-tag">American</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mcard">
+      <img class="mcard-img" src="https://images.pexels.com/photos/8365312/pexels-photo-8365312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Classic Burger">
+      <div class="mcard-body">
+        <div class="mcard-row">
+          <span class="mcard-name">Classic Burger</span>
+          <span class="mcard-price">$16</span>
+        </div>
+        <div class="mcard-desc">Half-pound beef with fresh toppings</div>
+        <div class="mcard-actions">
+          <span class="mcard-tag">American</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mcard">
+      <img class="mcard-img" src="https://images.pexels.com/photos/8522794/pexels-photo-8522794.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mac & Cheese">
+      <div class="mcard-body">
+        <div class="mcard-row">
+          <span class="mcard-name">Mac & Cheese</span>
+          <span class="mcard-price">$13</span>
+        </div>
+        <div class="mcard-desc">Creamy four-cheese baked pasta</div>
+        <div class="mcard-actions">
+          <span class="mcard-tag">American</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mcard">
+      <img class="mcard-img" src="https://images.pexels.com/photos/10895168/pexels-photo-10895168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Caesar Salad">
+      <div class="mcard-body">
+        <div class="mcard-row">
+          <span class="mcard-name">Caesar Salad</span>
+          <span class="mcard-price">$12</span>
+        </div>
+        <div class="mcard-desc">Romaine, parmesan, house dressing</div>
+        <div class="mcard-actions">
+          <span class="mcard-tag">American</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mcard">
+      <img class="mcard-img" src="https://images.pexels.com/photos/8365312/pexels-photo-8365312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Chicken Wings">
+      <div class="mcard-body">
+        <div class="mcard-row">
+          <span class="mcard-name">Chicken Wings</span>
+          <span class="mcard-price">$15</span>
+        </div>
+        <div class="mcard-desc">Crispy wings with choice of sauce</div>
+        <div class="mcard-actions">
+          <span class="mcard-tag">American</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mcard">
+      <img class="mcard-img" src="https://images.pexels.com/photos/8522794/pexels-photo-8522794.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Key Lime Pie">
+      <div class="mcard-body">
+        <div class="mcard-row">
+          <span class="mcard-name">Key Lime Pie</span>
+          <span class="mcard-price">$9</span>
+        </div>
+        <div class="mcard-desc">Florida classic dessert</div>
+        <div class="mcard-actions">
+          <span class="mcard-tag">American</span>
+          <button class="add-btn"><i class="fas fa-plus"></i></button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo" id="promo">
+  <div>
+    <div class="promo-discount"><span>UP TO</span>30%</div>
+    <h3>Tonight's Special Offer</h3>
+    <p>Visit KOL ICE LLC this week for exclusive dining deals.
+       Handcrafted American flavors worth savoring. Don't miss out on our rotating chef specials.</p>
+    <a class="btn-green" href="https://www.google.com/maps/search/?api=1&query=KOL%20ICE%20LLC&query_place_id=ChIJZTDBxdC22YgRQceWTN9fwl0" target="_blank"><i class="fas fa-map-marker-alt"></i>Claim Offer</a>
+  </div>
+  <div class="promo-img">
+    <img src="https://images.pexels.com/photos/8522797/pexels-photo-8522797.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="promo">
+  </div>
+</div>
+
+<!-- INFO STRIP -->
+<div class="info-strip" id="info">
+  <div class="info-card">
+    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+    <h4>Location</h4>
+    <p>1810 NW 21st Terrace, Miami, Florida</p>
+  </div>
+  
+  <div class="info-card">
+    <div class="info-icon"><i class="fas fa-phone"></i></div>
+    <h4>Phone</h4>
+    <a href="tel:(786) 285-8660">(786) 285-8660</a>
+  </div>
+  
+  <div class="info-card">
+    <div class="info-icon"><i class="fas fa-star"></i></div>
+    <h4>Our Rating</h4>
+    <p>4.8 / 5 stars<br>10 verified reviews</p>
+  </div>
+  <div class="info-card">
+    <div class="info-icon"><i class="fab fa-google"></i></div>
+    <h4>Google Maps</h4>
+    <a href="https://www.google.com/maps/search/?api=1&query=KOL%20ICE%20LLC&query_place_id=ChIJZTDBxdC22YgRQceWTN9fwl0" target="_blank">View on Maps →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-brand"><div class="nav-dot"></div>KOL ICE LLC</div>
+  <div class="ft-links">
+    <a href="#top">Home</a><a href="#menu">Menu</a>
+    <a href="#promo">Offers</a><a href="#info">Contact</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=KOL%20ICE%20LLC&query_place_id=ChIJZTDBxdC22YgRQceWTN9fwl0" target="_blank">Maps</a>
+  </div>
+  <div class="ft-copy">© 2025 KOL ICE LLC. All rights reserved.</div>
+</footer>
+
+<script>
+function filterAll(btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+const obs = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; } });
+},{threshold:.1});
+document.querySelectorAll('.mcard,.info-card').forEach(el=>{
+  el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
