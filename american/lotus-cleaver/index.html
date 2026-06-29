@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Handcrafted American flavors worth savoring — American restaurant in Miami">
+<title>Lotus + Cleaver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg1:#FFD4B4;--bg2:#FFF0E5;--bg3:#FFEBE0;
+  --orange:#E84200;--orange2:#FF6B35;
+  --dark:#1A1A1A;--body:#333;--muted:#777;
+  --glass:rgba(255,255,255,.38);--glass-b:rgba(255,255,255,.65);
+  --shadow:0 8px 32px rgba(150,60,0,.10);
+  --r:24px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%);
+  background-attachment:fixed;color:var(--dark);min-height:100vh;overflow-x:hidden}
+
+/* GLASS MIXIN */
+.glass{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--glass-b);border-radius:var(--r);box-shadow:var(--shadow)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:99;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 56px;background:rgba(255,220,195,.45);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.5)}
+.nav-brand{font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;
+  color:var(--dark);text-decoration:none}
+.nav-brand span{color:var(--orange)}
+.nav-links{display:flex;gap:30px}
+.nav-links a{color:var(--body);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cart{width:40px;height:40px;border-radius:50%;background:var(--orange);
+  color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem}
+
+/* HERO */
+.hero{min-height:100vh;padding:140px 56px 80px;display:grid;
+  grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative}
+.hero::before{content:'';position:absolute;top:-80px;right:-60px;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(255,106,53,.18) 0%,transparent 70%);pointer-events:none;border-radius:50%}
+
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(232,66,0,.1);
+  color:var(--orange);padding:7px 16px;border-radius:50px;font-size:.72rem;
+  font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;
+  border:1px solid rgba(232,66,0,.2)}
+.hero h1{font-family:'Outfit',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:800;line-height:1.1;color:var(--dark);margin-bottom:18px}
+.hero h1 span{color:var(--orange)}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.75;margin-bottom:30px;max-width:420px}
+
+.cat-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.pill{display:flex;align-items:center;gap:6px;padding:8px 16px;
+  background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);
+  border-radius:50px;font-size:.78rem;font-weight:500;color:var(--dark);cursor:default}
+.pill i{color:var(--orange);font-size:.85rem}
+
+.btn-dark{background:var(--dark);color:#fff;padding:13px 30px;border-radius:50px;
+  text-decoration:none;font-size:.88rem;font-weight:600;display:inline-flex;
+  align-items:center;gap:8px;transition:all .3s}
+.btn-dark:hover{background:var(--orange);transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(232,66,0,.3)}
+
+/* HERO IMAGE */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-visual .main-img{width:400px;height:400px;object-fit:cover;border-radius:50%;
+  box-shadow:0 30px 80px rgba(150,60,0,.22);border:6px solid rgba(255,255,255,.7)}
+.hero-badge{position:absolute;bottom:30px;left:0;
+  background:rgba(255,255,255,.8);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:14px 20px;
+  box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.hero-badge .b-num{font-family:'Outfit',sans-serif;font-size:1.8rem;font-weight:800;color:var(--orange)}
+.hero-badge .b-txt{font-size:.75rem;color:var(--muted);font-weight:500}
+
+/* MENU CARDS */
+.cards-sec{padding:80px 56px;position:relative}
+.cards-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px}
+.cards-header h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.5rem);
+  font-weight:800;color:var(--dark)}
+.cards-header a{color:var(--orange);text-decoration:none;font-size:.875rem;font-weight:600;
+  display:flex;align-items:center;gap:5px}
+.menu-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.menu-card{background:rgba(255,255,255,.5);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.75);border-radius:20px;overflow:hidden;
+  box-shadow:0 6px 24px rgba(150,60,0,.08);transition:all .3s;cursor:pointer}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(150,60,0,.15)}
+.card-img{width:100%;height:160px;object-fit:cover}
+.card-body{padding:16px}
+.card-name{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;
+  color:var(--dark);margin-bottom:4px}
+.card-desc{font-size:.78rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.card-footer{display:flex;justify-content:space-between;align-items:center}
+.card-price{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:800;color:var(--orange)}
+.card-btn{width:32px;height:32px;border-radius:50%;background:var(--orange);
+  color:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;border:none;cursor:pointer}
+.card-heart{background:rgba(255,255,255,.8);color:#e84200;margin-right:8px}
+
+/* FEATURE SECTION */
+.feature-sec{padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.feature-img-wrap{position:relative}
+.feature-img{width:100%;height:400px;object-fit:cover;border-radius:24px;
+  box-shadow:0 24px 64px rgba(150,60,0,.18)}
+.price-badge{position:absolute;bottom:-18px;right:24px;
+  background:var(--orange);color:#fff;
+  font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;
+  padding:14px 20px;border-radius:16px;box-shadow:0 8px 24px rgba(232,66,0,.4)}
+.feature-text .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.feature-text h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);
+  font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:16px}
+.feature-text p{color:var(--muted);font-size:.95rem;line-height:1.75;margin-bottom:28px}
+.rating-row{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.rating-row .stars{color:#FFB800;font-size:1.1rem}
+.rating-row span{font-size:.875rem;color:var(--muted)}
+
+/* APP SECTION */
+.app-sec{padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.app-visual{display:flex;justify-content:center;position:relative}
+.app-phone{width:200px;height:360px;background:var(--dark);border-radius:36px;
+  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.22);border:3px solid rgba(255,255,255,.3)}
+.app-phone img{width:100%;height:100%;object-fit:cover}
+.app-badge-wrap{position:absolute;right:-20px;top:40px;
+  background:rgba(255,255,255,.8);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:12px 16px;
+  box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.app-text .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.app-text h2{font-family:'Outfit',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);
+  font-weight:800;color:var(--dark);margin-bottom:16px}
+.app-text p{color:var(--muted);font-size:.93rem;line-height:1.75;margin-bottom:28px}
+.store-btns{display:flex;gap:14px;flex-wrap:wrap}
+.store-btn{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:14px;
+  background:var(--dark);color:#fff;text-decoration:none;font-size:.8rem;transition:all .3s}
+.store-btn:hover{background:var(--orange)}
+.store-btn i{font-size:1.3rem}
+.store-btn .sb-text small{display:block;font-size:.65rem;opacity:.7}
+.store-btn .sb-text strong{font-size:.9rem}
+
+/* CTA BANNER */
+.cta-banner{margin:0 56px 80px;background:var(--orange);border-radius:24px;
+  padding:50px 56px;display:flex;justify-content:space-between;align-items:center;
+  background-image:linear-gradient(135deg,#E84200 0%,#FF7043 100%)}
+.cta-banner h2{font-family:'Outfit',sans-serif;font-size:clamp(1.5rem,2.8vw,2.2rem);
+  font-weight:800;color:#fff;line-height:1.2}
+.cta-banner h2 span{opacity:.8;font-weight:400;font-size:.85em}
+.btn-white{background:#fff;color:var(--orange);padding:13px 30px;border-radius:50px;
+  text-decoration:none;font-weight:700;font-size:.9rem;white-space:nowrap;transition:all .3s}
+.btn-white:hover{background:var(--dark);color:#fff}
+
+/* CONTACT INFO */
+.contact-sec{padding:0 56px 80px}
+.contact-inner{background:rgba(255,255,255,.5);backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.75);border-radius:24px;padding:50px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+.c-col h4{font-family:'Outfit',sans-serif;font-size:.8rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:14px}
+.c-col p,.c-col a{font-size:.9rem;color:var(--body);text-decoration:none;line-height:1.7}
+.c-col a:hover{color:var(--orange)}
+
+/* FOOTER */
+footer{background:rgba(26,26,26,.9);color:#fff;padding:40px 56px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.ft-brand{font-family:'Outfit',sans-serif;font-size:1.2rem;font-weight:800}
+.ft-brand span{color:var(--orange)}
+.ft-copy{font-size:.78rem;color:#888}
+.ft-links{display:flex;gap:24px}
+.ft-links a{color:#aaa;text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-links a:hover{color:#fff}
+
+@media(max-width:900px){
+  .nav{padding:12px 20px}.nav-links{display:none}
+  .hero,.feature-sec,.app-sec{grid-template-columns:1fr;padding:110px 20px 60px}
+  .feature-sec,.app-sec{padding:56px 20px}
+  .hero-visual{display:none}
+  .menu-cards{grid-template-columns:1fr 1fr}
+  .cards-sec,.cards-header,.contact-sec{padding-left:20px;padding-right:20px}
+  .cta-banner{margin:0 20px 60px;flex-direction:column;gap:20px;padding:36px 24px;text-align:center}
+  .price-badge{display:none}
+  footer{flex-direction:column;text-align:center;padding:32px 20px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="#top"><span>L</span>otus + Cleaver</a>
+  <div class="nav-links">
+    <a href="#top">Home</a><a href="#menu">Menu</a>
+    <a href="#about">About</a><a href="#contact">Contact</a>
+  </div>
+  <div class="nav-cart"><i class="fas fa-shopping-basket"></i></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div>
+    <div class="hero-tag"><i class="fas fa-utensils"></i>American · Miami</div>
+    <h1>Delicious <span>American</span><br>Food is Waiting For You</h1>
+    <p class="hero-sub">Handcrafted American flavors worth savoring. Experience every dish made with love and the finest ingredients.</p>
+    <div class="cat-pills">
+      <div class="pill"><i class="fas fa-fire"></i>Signature Dishes</div>
+      <div class="pill"><i class="fas fa-leaf"></i>Fresh Daily</div>
+      <div class="pill"><i class="fas fa-star"></i>2.7 Rated</div>
+      <div class="pill"><i class="fas fa-map-marker-alt"></i>Miami</div>
+    </div>
+    <a class="btn-dark" href="#menu">View Menu &nbsp;<i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="hero-visual">
+    <img class="main-img" src="https://images.pexels.com/photos/33858065/pexels-photo-33858065.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Lotus + Cleaver">
+    <div class="hero-badge">
+      <div class="b-num">2.7</div>
+      <div class="b-txt">⭐ 31 Reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU CARDS -->
+<section class="cards-sec" id="menu">
+  <div class="cards-header">
+    <h2>Our Menu</h2>
+    <a href="https://www.google.com/maps/search/?api=1&query=Lotus%20%2B%20Cleaver&query_place_id=ChIJrZEg7q222YgRxEYdJQIOfAg" target="_blank">View Location <i class="fas fa-arrow-right"></i></a>
+  </div>
+  <div class="menu-cards">
+    
+    <div class="menu-card">
+      <img class="card-img" src="https://images.pexels.com/photos/10895168/pexels-photo-10895168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="BBQ Ribs">
+      <div class="card-body">
+        <div class="card-name">BBQ Ribs</div>
+        <div class="card-desc">Slow-smoked baby back ribs</div>
+        <div class="card-footer">
+          <span class="card-price">$24</span>
+          <div style="display:flex">
+            <button class="card-btn card-heart"><i class="fas fa-heart"></i></button>
+            <button class="card-btn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-card">
+      <img class="card-img" src="https://images.pexels.com/photos/8365312/pexels-photo-8365312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Classic Burger">
+      <div class="card-body">
+        <div class="card-name">Classic Burger</div>
+        <div class="card-desc">Half-pound beef with fresh toppings</div>
+        <div class="card-footer">
+          <span class="card-price">$16</span>
+          <div style="display:flex">
+            <button class="card-btn card-heart"><i class="fas fa-heart"></i></button>
+            <button class="card-btn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-card">
+      <img class="card-img" src="https://images.pexels.com/photos/8522794/pexels-photo-8522794.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mac & Cheese">
+      <div class="card-body">
+        <div class="card-name">Mac & Cheese</div>
+        <div class="card-desc">Creamy four-cheese baked pasta</div>
+        <div class="card-footer">
+          <span class="card-price">$13</span>
+          <div style="display:flex">
+            <button class="card-btn card-heart"><i class="fas fa-heart"></i></button>
+            <button class="card-btn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-card">
+      <img class="card-img" src="https://images.pexels.com/photos/10895168/pexels-photo-10895168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Caesar Salad">
+      <div class="card-body">
+        <div class="card-name">Caesar Salad</div>
+        <div class="card-desc">Romaine, parmesan, house dressing</div>
+        <div class="card-footer">
+          <span class="card-price">$12</span>
+          <div style="display:flex">
+            <button class="card-btn card-heart"><i class="fas fa-heart"></i></button>
+            <button class="card-btn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-card">
+      <img class="card-img" src="https://images.pexels.com/photos/8365312/pexels-photo-8365312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Chicken Wings">
+      <div class="card-body">
+        <div class="card-name">Chicken Wings</div>
+        <div class="card-desc">Crispy wings with choice of sauce</div>
+        <div class="card-footer">
+          <span class="card-price">$15</span>
+          <div style="display:flex">
+            <button class="card-btn card-heart"><i class="fas fa-heart"></i></button>
+            <button class="card-btn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="menu-card">
+      <img class="card-img" src="https://images.pexels.com/photos/8522794/pexels-photo-8522794.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Key Lime Pie">
+      <div class="card-body">
+        <div class="card-name">Key Lime Pie</div>
+        <div class="card-desc">Florida classic dessert</div>
+        <div class="card-footer">
+          <span class="card-price">$9</span>
+          <div style="display:flex">
+            <button class="card-btn card-heart"><i class="fas fa-heart"></i></button>
+            <button class="card-btn"><i class="fas fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- FEATURE -->
+<section class="feature-sec" id="about">
+  <div class="feature-img-wrap">
+    <img class="feature-img" src="https://images.pexels.com/photos/8522797/pexels-photo-8522797.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="feature">
+    <div class="price-badge">From $24</div>
+  </div>
+  <div class="feature-text">
+    <div class="eyebrow">Why Choose Us</div>
+    <h2>We Have Delicious Food, Tasty &amp; Fresh in Town</h2>
+    <p>Our kitchen team sources the freshest local ingredients to craft every dish with care.
+       From our signature plates to daily specials, every bite at Lotus + Cleaver is designed to delight.</p>
+    <div class="rating-row">
+      <span class="stars">★★★★★</span>
+      <span><strong>2.7</strong> avg. rating from 31 guests</span>
+    </div>
+    <a class="btn-dark" href="https://www.google.com/maps/search/?api=1&query=Lotus%20%2B%20Cleaver&query_place_id=ChIJrZEg7q222YgRxEYdJQIOfAg" target="_blank">Get Directions <i class="fas fa-map-marker-alt"></i></a>
+  </div>
+</section>
+
+<!-- APP SECTION -->
+<section class="app-sec">
+  <div class="app-visual">
+    <div class="app-phone">
+      <img src="https://images.pexels.com/photos/36691306/pexels-photo-36691306.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="app">
+    </div>
+    <div class="app-badge-wrap">
+      <div style="font-size:.72rem;color:#888;margin-bottom:2px">Dining Score</div>
+      <div style="font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:800;color:var(--orange)">2.7/5</div>
+    </div>
+  </div>
+  <div class="app-text">
+    <div class="eyebrow">Find Us Everywhere</div>
+    <h2>Lotus + Cleaver — Now on Google Maps</h2>
+    <p>Look us up on Google Maps for hours, photos, and reviews. Our guests say it best —
+       Lotus + Cleaver is one of Miami's top american dining destinations.</p>
+    <div class="store-btns">
+      <a class="store-btn" href="https://www.google.com/maps/search/?api=1&query=Lotus%20%2B%20Cleaver&query_place_id=ChIJrZEg7q222YgRxEYdJQIOfAg" target="_blank">
+        <i class="fab fa-google"></i>
+        <div class="sb-text"><small>View on</small><strong>Google Maps</strong></div>
+      </a>
+      
+      <a class="store-btn" href="tel:(305) 934-4649">
+        <i class="fas fa-phone"></i>
+        <div class="sb-text"><small>Call Us</small><strong>(305) 934-4649</strong></div>
+      </a>
+      
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>Let's Talk. <span>Want to visit Lotus + Cleaver?</span></h2>
+  <a class="btn-white" href="https://www.google.com/maps/search/?api=1&query=Lotus%20%2B%20Cleaver&query_place_id=ChIJrZEg7q222YgRxEYdJQIOfAg" target="_blank">Find Us Now</a>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="c-col">
+      <h4>Lotus + Cleaver</h4>
+      <p>Handcrafted American flavors worth savoring</p>
+    </div>
+    <div class="c-col">
+      <h4>Address</h4>
+      <p>143 NW 23rd St, Miami, Florida</p>
+    </div>
+    
+    <div class="c-col">
+      <h4>Phone</h4>
+      <a href="tel:(305) 934-4649">(305) 934-4649</a>
+    </div>
+    
+    <div class="c-col">
+      <h4>Find Us</h4>
+      <a href="https://www.google.com/maps/search/?api=1&query=Lotus%20%2B%20Cleaver&query_place_id=ChIJrZEg7q222YgRxEYdJQIOfAg" target="_blank">Google Maps →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-brand"><span>L</span>otus + Cleaver</div>
+  <div class="ft-links">
+    <a href="#top">Home</a><a href="#menu">Menu</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </div>
+  <div class="ft-copy">© 2025 Lotus + Cleaver. All rights reserved.</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; } });
+}, {threshold:0.1});
+document.querySelectorAll('.menu-card,.c-col,.feature-text,.app-text').forEach(el => {
+  el.style.cssText += 'opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
