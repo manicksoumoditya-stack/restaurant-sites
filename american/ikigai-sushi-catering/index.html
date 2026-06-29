@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Handcrafted American flavors worth savoring — American restaurant in Miami">
+<title>Ikigai Sushi & Catering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#090909;--dark:#111;--card:#181818;
+  --orange:#FF4500;--orange2:#FF6B35;
+  --white:#fff;--light:#F5F5F5;--gray:#888;--muted:#BABABA;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;
+  justify-content:space-between;padding:18px 60px;
+  background:rgba(9,9,9,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.05);transition:background .3s}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;
+  color:var(--white);text-decoration:none}
+.nav-links{display:flex;gap:32px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.btn-orange{background:var(--orange);color:#fff;padding:11px 26px;border-radius:50px;
+  text-decoration:none;font-size:.85rem;font-weight:600;transition:all .3s;display:inline-block}
+.btn-orange:hover{background:var(--orange2);transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,69,0,.4)}
+.btn-ghost{color:var(--white);text-decoration:none;font-size:.875rem;font-weight:500;
+  border:1px solid rgba(255,255,255,.3);padding:11px 26px;border-radius:50px;
+  transition:all .3s;display:inline-block}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.06)}
+
+/* HERO */
+.hero{min-height:100vh;padding:150px 60px 80px;display:grid;
+  grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 70% at 70% 50%,rgba(255,69,0,.07) 0%,transparent 65%);pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(255,69,0,.15);color:var(--orange);
+  padding:6px 16px;border-radius:50px;font-size:.75rem;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5vw,4rem);
+  font-weight:900;line-height:1.08;margin-bottom:18px}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:420px;margin-bottom:14px}
+.hero-rating{display:flex;align-items:center;gap:10px;margin-bottom:34px;color:var(--muted);font-size:.875rem}
+.stars{color:#FFB800}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-img{position:relative}
+.hero-img img{width:100%;max-width:540px;height:490px;object-fit:cover;border-radius:22px;
+  box-shadow:0 40px 90px rgba(0,0,0,.55);display:block}
+.hero-img::after{content:'';position:absolute;inset:-8px;border-radius:28px;
+  border:1px solid rgba(255,69,0,.18);pointer-events:none}
+
+/* WAVE */
+.wave-to-white{background:var(--bg);line-height:0}
+.wave-to-white svg{display:block;width:100%;height:70px}
+.wave-to-dark{background:#fff;line-height:0}
+.wave-to-dark svg{display:block;width:100%;height:70px}
+
+/* MENU — white */
+.menu-sec{background:#fff;color:#111;padding:80px 60px}
+.sec-eye{text-align:center;color:var(--orange);font-size:.72rem;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,2.7rem);
+  font-weight:700;text-align:center;margin-bottom:10px}
+.sec-sub{text-align:center;color:#666;font-size:.95rem;max-width:480px;margin:0 auto 48px}
+.menu-grid{display:grid;grid-template-columns:220px 1fr 220px;gap:28px;align-items:start}
+.menu-side-img img{width:100%;height:260px;object-fit:cover;border-radius:16px;
+  box-shadow:0 18px 48px rgba(0,0,0,.12)}
+.menu-list{display:flex;flex-direction:column}
+.menu-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;
+  padding:22px 0;border-bottom:1px solid #EBEBEB}
+.menu-row:last-child{border-bottom:none}
+.menu-row h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;
+  color:#111;margin-bottom:4px}
+.menu-row p{font-size:.83rem;color:#666;line-height:1.5}
+.price-chip{background:var(--orange);color:#fff;padding:5px 14px;border-radius:50px;
+  font-size:.82rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+
+/* SPECIALTIES — dark */
+.spec-sec{background:var(--dark);padding:80px 60px}
+.spec-sec .sec-h,.spec-sec .sec-eye,.spec-sec .sec-sub{color:var(--muted)}
+.spec-sec .sec-h{color:var(--white)}
+.spec-grid{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:24px;align-items:center;margin-top:48px}
+.spec-card{background:var(--card);border-radius:20px;padding:28px;
+  border:1px solid rgba(255,255,255,.06);transition:all .3s}
+.spec-card:hover{border-color:rgba(255,69,0,.28);transform:translateY(-4px)}
+.spec-icon{width:48px;height:48px;background:rgba(255,69,0,.12);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:18px}
+.spec-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;
+  color:var(--white);margin-bottom:8px}
+.spec-card p{font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.spec-price{color:var(--orange);font-weight:700;font-size:.95rem}
+.spec-center img{width:100%;height:370px;object-fit:cover;border-radius:22px;
+  box-shadow:0 28px 72px rgba(0,0,0,.45)}
+
+/* CTA — dark */
+.cta-sec{background:var(--bg);padding:90px 60px;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.cta-label{color:var(--orange);font-size:.72rem;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;display:block;margin-bottom:18px}
+.cta-sec h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.2vw,2.8rem);
+  font-weight:700;line-height:1.18;margin-bottom:18px}
+.cta-sec p{color:var(--muted);font-size:.92rem;line-height:1.75;margin-bottom:28px}
+.info-row{display:flex;flex-direction:column;gap:12px;margin-bottom:34px}
+.info-item{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.875rem}
+.info-item i{color:var(--orange);width:18px}
+.cta-img img{width:100%;height:430px;object-fit:cover;border-radius:22px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5)}
+
+/* CONTACT — white */
+.contact-sec{background:#fff;color:#111;padding:80px 60px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.contact-grid img{width:100%;height:370px;object-fit:cover;border-radius:18px;
+  box-shadow:0 18px 56px rgba(0,0,0,.14)}
+.contact-info h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;
+  color:#111;margin-bottom:28px}
+.c-item{display:flex;align-items:flex-start;gap:14px;padding:18px;background:#F6F6F6;
+  border-radius:14px;border-left:3px solid var(--orange);margin-bottom:14px}
+.c-icon{color:var(--orange);font-size:1.1rem;margin-top:2px}
+.c-text strong{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:1.2px;
+  color:#888;margin-bottom:4px}
+.c-text span,.c-text a{font-size:.9rem;color:#111;text-decoration:none;font-weight:500}
+.c-text a:hover{color:var(--orange)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid rgba(255,255,255,.05);
+  padding:44px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.ft-brand{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--white)}
+.ft-links{display:flex;gap:28px}
+.ft-links a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s}
+.ft-links a:hover{color:var(--white)}
+.ft-copy{color:var(--gray);font-size:.78rem}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav{padding:14px 20px}.nav-links{display:none}
+  .hero{grid-template-columns:1fr;padding:120px 20px 60px;text-align:center}
+  .hero-ctas{justify-content:center}
+  .hero-img img{height:280px}
+  .menu-sec,.spec-sec,.cta-sec,.contact-sec{padding:56px 20px}
+  .menu-grid,.spec-grid,.cta-sec,.contact-grid{grid-template-columns:1fr}
+  .menu-side-img{display:none}
+  .spec-center{display:none}
+  footer{padding:36px 20px;flex-direction:column;text-align:center}
+  .ft-links{flex-wrap:wrap;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="top">
+  <a class="nav-brand" href="#top">Ikigai Sushi & Catering</a>
+  <div class="nav-links">
+    <a href="#top">Home</a><a href="#menu">Menu</a>
+    <a href="#specials">Specials</a><a href="#contact">Contact</a>
+  </div>
+  <a class="btn-orange" href="#contact">Visit Us</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <span class="hero-tag">American · Miami</span>
+    <h1>Ikigai Sushi & Catering</h1>
+    <p class="hero-sub">Handcrafted American flavors worth savoring</p>
+    <div class="hero-rating">
+      <span class="stars">★★★★★</span>
+      <span><strong>5</strong> &nbsp;·&nbsp; 17 reviews</span>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn-orange" href="#menu">Explore Menu</a>
+      <a class="btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Ikigai%20Sushi%20%26%20Catering&query_place_id=ChIJ2yDCkTS32YgRPmXJlRMpFYc" target="_blank">Get Directions</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.pexels.com/photos/33858065/pexels-photo-33858065.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ikigai Sushi & Catering">
+  </div>
+</section>
+
+<!-- wave → white -->
+<div class="wave-to-white">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C480,70 960,0 1440,70 L1440,70 L0,70 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- MENU — white -->
+<section class="menu-sec" id="menu">
+  <div class="sec-eye">Our Offerings</div>
+  <h2 class="sec-h">What We Serve</h2>
+  <p class="sec-sub">Fresh ingredients, authentic flavors, unforgettable experiences.</p>
+  <div class="menu-grid">
+    <div class="menu-side-img">
+      <img src="https://images.pexels.com/photos/10895168/pexels-photo-10895168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="dish">
+    </div>
+    <div class="menu-list">
+      
+      <div class="menu-row">
+        <div><h3>BBQ Ribs</h3><p>Slow-smoked baby back ribs</p></div>
+        <span class="price-chip">$24</span>
+      </div>
+      
+      <div class="menu-row">
+        <div><h3>Classic Burger</h3><p>Half-pound beef with fresh toppings</p></div>
+        <span class="price-chip">$16</span>
+      </div>
+      
+      <div class="menu-row">
+        <div><h3>Mac & Cheese</h3><p>Creamy four-cheese baked pasta</p></div>
+        <span class="price-chip">$13</span>
+      </div>
+      
+      <div class="menu-row">
+        <div><h3>Caesar Salad</h3><p>Romaine, parmesan, house dressing</p></div>
+        <span class="price-chip">$12</span>
+      </div>
+      
+      <div class="menu-row">
+        <div><h3>Chicken Wings</h3><p>Crispy wings with choice of sauce</p></div>
+        <span class="price-chip">$15</span>
+      </div>
+      
+      <div class="menu-row">
+        <div><h3>Key Lime Pie</h3><p>Florida classic dessert</p></div>
+        <span class="price-chip">$9</span>
+      </div>
+      
+    </div>
+    <div class="menu-side-img">
+      <img src="https://images.pexels.com/photos/8365312/pexels-photo-8365312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="dish">
+    </div>
+  </div>
+</section>
+
+<!-- wave → dark -->
+<div class="wave-to-dark">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,70 C480,0 960,70 1440,0 L1440,70 L0,70 Z" fill="#111111"/>
+  </svg>
+</div>
+
+<!-- SPECIALTIES — dark -->
+<section class="spec-sec" id="specials">
+  <div class="sec-eye">Highlights</div>
+  <h2 class="sec-h">Our Specialties</h2>
+  <p class="sec-sub">Dishes that keep our guests coming back.</p>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-icon">🍽️</div>
+      <h3>BBQ Ribs</h3>
+      <p>Slow-smoked baby back ribs</p>
+      <span class="spec-price">$24</span>
+    </div>
+    <div class="spec-center">
+      <img src="https://images.pexels.com/photos/8522794/pexels-photo-8522794.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="feature">
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔥</div>
+      <h3>Classic Burger</h3>
+      <p>Half-pound beef with fresh toppings</p>
+      <span class="spec-price">$16</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — dark -->
+<section class="cta-sec">
+  <div>
+    <span class="cta-label">Come Visit Us</span>
+    <h2>Experience Authentic<br>American Cuisine</h2>
+    <p>We bring you the finest flavors. Join us for a dining experience worth sharing.</p>
+    <div class="info-row">
+      <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>3250 S Miami Ave, Miami, Florida</span></div>
+      <div class="info-item"><i class="fas fa-phone"></i><span>(754) 217-5264</span></div>
+      <div class="info-item"><i class="fas fa-clock"></i><span>Open daily — call ahead for hours</span></div>
+    </div>
+    <a class="btn-orange" href="https://www.google.com/maps/search/?api=1&query=Ikigai%20Sushi%20%26%20Catering&query_place_id=ChIJ2yDCkTS32YgRPmXJlRMpFYc" target="_blank">Find Us on Google Maps</a>
+  </div>
+  <div class="cta-img">
+    <img src="https://images.pexels.com/photos/8522797/pexels-photo-8522797.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="dining">
+  </div>
+</section>
+
+<!-- CONTACT — white -->
+<section class="contact-sec" id="contact">
+  <div class="sec-eye" style="color:var(--orange)">Get In Touch</div>
+  <h2 class="sec-h" style="color:#111">Contact & Location</h2>
+  <div class="contact-grid" style="margin-top:40px">
+    <img src="https://images.pexels.com/photos/36691306/pexels-photo-36691306.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Ikigai Sushi & Catering">
+    <div class="contact-info">
+      <h2>Visit Ikigai Sushi & Catering</h2>
+      <div class="c-item"><i class="fas fa-map-marker-alt c-icon"></i>
+        <div class="c-text"><strong>Address</strong><span>3250 S Miami Ave, Miami, Florida</span></div></div>
+      
+      <div class="c-item"><i class="fas fa-phone c-icon"></i>
+        <div class="c-text"><strong>Phone</strong><a href="tel:(754) 217-5264">(754) 217-5264</a></div></div>
+      
+      <div class="c-item"><i class="fas fa-star c-icon"></i>
+        <div class="c-text"><strong>Rating</strong><span>5 / 5 · 17 Google reviews</span></div></div>
+      <div class="c-item"><i class="fab fa-google c-icon"></i>
+        <div class="c-text"><strong>Google Maps</strong><a href="https://www.google.com/maps/search/?api=1&query=Ikigai%20Sushi%20%26%20Catering&query_place_id=ChIJ2yDCkTS32YgRPmXJlRMpFYc" target="_blank">View on Maps</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">Ikigai Sushi & Catering</div>
+  <div class="ft-links">
+    <a href="#top">Home</a><a href="#menu">Menu</a>
+    <a href="#specials">Specials</a><a href="#contact">Contact</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Ikigai%20Sushi%20%26%20Catering&query_place_id=ChIJ2yDCkTS32YgRPmXJlRMpFYc" target="_blank">Maps</a>
+  </div>
+  <div class="ft-copy">© 2025 Ikigai Sushi & Catering. All rights reserved.</div>
+</footer>
+
+<script>
+// Scroll-triggered fade-in
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } });
+}, {threshold: 0.12});
+document.querySelectorAll('.spec-card,.menu-row,.c-item').forEach(el => {
+  el.style.cssText += 'opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease';
+  obs.observe(el);
+});
+// Sticky nav
+window.addEventListener('scroll', () => {
+  document.querySelector('.nav').style.background =
+    window.scrollY > 60 ? 'rgba(9,9,9,.98)' : 'rgba(9,9,9,.93)';
+});
+</script>
+</body>
+</html>
